@@ -21,7 +21,7 @@ module Kitchen
   module Driver
 
     # Version string for Powervc Kitchen driver
-    POWERVC_VERSION = "0.1.0"
-    OPENSTACK_VERSION = "0.1.0"
+    POWERVC_VERSION = "0.1.1"
+    OPENSTACK_VERSION = "0.1.1"
   end
 end
