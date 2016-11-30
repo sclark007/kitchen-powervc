@@ -52,12 +52,12 @@ module Kitchen
       default_config :openstack_region, nil
       default_config :openstack_service_name, nil
       default_config :openstack_network_name, nil
-      #default_config :floating_ip_pool, nil
-      #default_config :floating_ip, nil
-      #default_config :private_ip_order, 0
-      #default_config :public_ip_order, 0
-      #default_config :availability_zone, nil
-      #default_config :security_groups, nil
+      # default_config :floating_ip_pool, nil
+      # default_config :floating_ip, nil
+      # default_config :private_ip_order, 0
+      # default_config :public_ip_order, 0
+      # default_config :availability_zone, nil
+      # default_config :security_groups, nil
       default_config :network_ref, nil
       default_config :no_ssh_tcp_check, false
       default_config :no_ssh_tcp_check_sleep, 120
@@ -106,11 +106,11 @@ module Kitchen
         end
 
         # Delete for PowerVC support
-        #if config[:floating_ip]
+        # if config[:floating_ip]
         #  attach_ip(server, config[:floating_ip])
-        #elsif config[:floating_ip_pool]
+        # elsif config[:floating_ip_pool]
         #  attach_ip_from_pool(server, config[:floating_ip_pool])
-        #end
+        # end
         state[:hostname] = get_ip(server)
         wait_for_server(state)
         add_ohai_hint(state)
@@ -169,7 +169,7 @@ module Kitchen
       def create_server
         server_def = init_configuration
 
-        # change for PowerVC 
+        # change for PowerVC
         # - only one network possible ( nics (fog) = network (openstack) )
         # - use fixed_ip ( v4_fixed_ip (fog) = fixed_ip (openstack) )
         if config[:network_ref]
@@ -206,19 +206,19 @@ module Kitchen
       end
 
       def init_configuration
-        { 
+        {
           name: config[:server_name],
           image_ref: find_image(config[:image_ref]).id,
           flavor_ref: find_flavor(config[:flavor_ref]).id,
           # delete for PowerVC support
-          #availability_zone: config[:availability_zone]
+          # availability_zone: config[:availability_zone]
         }
       end
 
       def optional_config(c)
         case c
         # deleting security group for PowerVC support
-        #when :security_groups
+        # when :security_groups
         #  config[c] if config[c].is_a?(Array)
         when :user_data
           File.open(config[c], &:read) if File.exist?(config[c])
@@ -325,15 +325,15 @@ module Kitchen
 
       def get_ip(server)
         # Deleted for PowerVC support
-        #if config[:floating_ip]
+        # if config[:floating_ip]
         #  debug "Using floating ip: #{config[:floating_ip]}"
         #  return config[:floating_ip]
-        #end
+        # end
 
         # make sure we have the latest info
         info 'Waiting for network information to be available...'
         begin
-          network_name = "#{config[:network_ref]}"
+          network_name = config[:network_ref].to_s
           info "PowerVC Network name #{network_name}"
           w = server.wait_for { !addresses[network_name].first['addr'].empty? }
           debug "Waited #{w[:duration]} seconds for network information."
@@ -341,22 +341,22 @@ module Kitchen
           raise ActionFailed, 'Could not get network information (timed out)'
         end
 
-        # Added for PowerVC 
+        # Added for PowerVC
         # Only one adapter allowed for the test kitchen
         addr = server.addresses[network_name].first['addr']
         info "Found ip #{addr}"
-        return addr
+        addr
 
         # should also work for private networks
-        #if config[:openstack_network_name]
+        # if config[:openstack_network_name]
         #  debug "Using configured net: #{config[:openstack_network_name]}"
         #  return server.addresses[config[:openstack_network_name]].first['addr']
-        #end
+        # end
 
-        #pub, priv = get_public_private_ips(server)
-        #priv ||= server.ip_addresses unless pub
-        #pub, priv = parse_ips(pub, priv)
-        #pub[config[:public_ip_order].to_i] ||
+        # pub, priv = get_public_private_ips(server)
+        # priv ||= server.ip_addresses unless pub
+        # pub, priv = parse_ips(pub, priv)
+        # pub[config[:public_ip_order].to_i] ||
         #  priv[config[:private_ip_order].to_i] ||
         #  fail(ActionFailed, 'Could not find an IP') # rubocop:disable Metrics/LineLength, SignalException
       end

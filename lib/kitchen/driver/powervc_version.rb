@@ -17,11 +17,9 @@
 # limitations under the License.
 
 module Kitchen
-
   module Driver
-
     # Version string for Powervc Kitchen driver
-    POWERVC_VERSION = "0.1.1"
-    OPENSTACK_VERSION = "0.1.1"
+    POWERVC_VERSION = '0.1.1'.freeze
+    OPENSTACK_VERSION = '0.1.1'.freeze
   end
 end

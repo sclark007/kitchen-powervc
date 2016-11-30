@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = Kitchen::Driver::POWERVC_VERSION
   spec.authors       = ['Benoit Creau']
   spec.email         = ['benoit.creau@chmod666.org']
-  spec.description   = %q{A Test Kitchen Driver for Powervc}
+  spec.description   = 'A Test Kitchen Driver for Powervc'
   spec.summary       = spec.description
   spec.homepage      = 'https://github.com/chmod666org/kitchen-powervc'
   spec.license       = 'Apache 2.0'
 
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = []
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
