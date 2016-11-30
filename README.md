@@ -13,6 +13,10 @@ Port for PowerVC support by Benoit Creau (<benoit.creau@chmod666.org>)
 
 There are **no** external system requirements for this driver. However you will need access to an PowerVC cloud.
 
+## API ports
+port 5000 is keystone API
+port 8447 is nova API
+
 ## Installation and Setup
 
 Add this line to your application's Gemfile:
@@ -346,11 +350,11 @@ driver:
   server_wait: 100
   openstack_username: "root"
   openstack_api_key: "root"
-  openstack_auth_url: "https://powervchost/v3/auth/tokens"
+  openstack_auth_url: "https://powervchost:5000/v3/auth/tokens"
   openstack_region: "RegionOne"
   openstack_project_domain: "Default"
   openstack_user_domain: "Default"
-  openstack_project_name: "ibm-default"
+  openstack_project_name: "ibm-default"s
   image_ref: "kitchen-aix72"
   flavor_ref: "mytemplate"
   server_name_prefix: "chefkitchen"
@@ -405,4 +409,3 @@ PowerVC port by Benoit Creau (<benoit.creau@chmod666.org>)
 ## <a name="license"></a> License
 
 Apache 2.0
-
