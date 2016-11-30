@@ -1,5 +1,8 @@
 # <a name="title"></a> Kitchen::PowerVC: A Test Kitchen Driver for PowerVC
 
+[![Build Status](https://img.shields.io/travis/test-kitchen/kitchen-openstack.svg)][travis]
+https://travis-ci.org/sclark007/kitchen-powervc
+
 A test kitchen Driver for PowerVC.
 
 This driver uses the fog to provision and destroy nova instances. Use a PowerVC cloud for your infrastructure testing!
