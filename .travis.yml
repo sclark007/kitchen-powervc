@@ -1,0 +1,11 @@
+language: ruby
+cache: bundler
+
+sudo: false
+
+gemfile:
+  - Gemfile
+
+rvm:
+  - 2.0.0
+  - ruby-head
