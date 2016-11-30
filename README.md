@@ -354,7 +354,7 @@ driver:
   openstack_region: "RegionOne"
   openstack_project_domain: "Default"
   openstack_user_domain: "Default"
-  openstack_project_name: "ibm-default"s
+  openstack_project_name: "ibm-default"
   image_ref: "kitchen-aix72"
   flavor_ref: "mytemplate"
   server_name_prefix: "chefkitchen"
