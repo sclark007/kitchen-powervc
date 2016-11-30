@@ -18,12 +18,19 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'test-kitchen', '>= 1.0.0'
+  spec.add_dependency 'test-kitchen', '~> 1.4', '>= 1.4.1'
+  spec.add_dependency 'fog', '~> 1.33'
+  spec.add_dependency 'unf'
+  spec.add_dependency 'ohai'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
-
+  spec.add_development_dependency 'rubocop', '~> 0.36'
   spec.add_development_dependency 'cane'
-  spec.add_development_dependency 'tailor'
   spec.add_development_dependency 'countloc'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov-console'
+  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'github_changelog_generator'
 end
