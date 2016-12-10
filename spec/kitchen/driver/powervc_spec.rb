@@ -25,7 +25,7 @@ describe Kitchen::Driver::Powervc do
   let(:instance_name) { 'potatoes' }
   let(:transport)     { Kitchen::Transport::Dummy.new }
   let(:platform)      { Kitchen::Platform.new(name: 'fake_platform') }
-  let(:driver)        { Kitchen::Driver::powervc.new(config) }
+  let(:driver)        { Kitchen::Driver.powervc.new(config) }
 
   let(:instance) do
     double(
@@ -977,10 +977,10 @@ describe Kitchen::Driver::Powervc do
     context 'an powervc deployment without the floating IP extension' do
       before do
         allow(server).to receive(:public_ip_addresses).and_raise(
-          Fog::Compute::powervc::NotFound
+          Fog::Compute.powervc::NotFound
         )
         allow(server).to receive(:private_ip_addresses).and_raise(
-          Fog::Compute::powervc::NotFound
+          Fog::Compute.powervc::NotFound
         )
       end
 
