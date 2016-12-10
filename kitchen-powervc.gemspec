@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'fog', '~> 1.33'
   spec.add_dependency 'unf'
   spec.add_dependency 'ohai'
-  spec.add_dependency 'activesupport', '~> 4.2.7.1'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
