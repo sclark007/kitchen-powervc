@@ -1,7 +1,7 @@
 # <a name="title"></a> Kitchen::PowerVC: A Test Kitchen Driver for PowerVC
 
-[![Build Status](https://img.shields.io/travis/test-kitchen/kitchen-openstack.svg)][travis]
-https://travis-ci.org/sclark007/kitchen-powervc
+[![Build Status](https://img.shields.io/travis/sclark007/kitchen-powervc.svg)][travis]
+
 
 A test kitchen Driver for PowerVC.
 
