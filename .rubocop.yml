@@ -1,7 +1,7 @@
 CyclomaticComplexity:
   Max: 8
 MethodLength:
-  Max: 30
+  Max: 60
 ClassLength:
   Max: 300
 ClassVars:
@@ -12,3 +12,6 @@ AbcSize:
   Max: 120
 Metrics/LineLength:
   Max: 100
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: false
