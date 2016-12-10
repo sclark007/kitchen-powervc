@@ -1,6 +1,6 @@
 # <a name="title"></a> Kitchen::PowerVC: A Test Kitchen Driver for PowerVC
 
-[![Build Status](https://img.shields.io/travis/sclark007/kitchen-powervc.svg)][travis]
+![Build Status](https://img.shields.io/travis/sclark007/kitchen-powervc.svg)
 
 
 A test kitchen Driver for PowerVC.
