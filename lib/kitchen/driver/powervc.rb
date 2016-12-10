@@ -28,7 +28,7 @@ require_relative 'powervc/volume'
 module Kitchen
   module Driver
     # This takes from the Base Class and creates the PowerVC driver.
-    class Powervc < Kitchen::Driver::Base # rubocop:disable Metrics/ClassLength, Metrics/LineLength
+    class Powervc < Kitchen::Driver::Base
       @@ip_pool_lock = Mutex.new
 
       kitchen_driver_api_version 2
@@ -78,13 +78,13 @@ module Kitchen
       def config_server_name
         return if config[:server_name]
 
-        if config[:server_name_prefix]
-          config[:server_name] = server_name_prefix(
-            config[:server_name_prefix]
-          )
-        else
-          config[:server_name] = default_name
-        end
+        config[:server_name] = if config[:server_name_prefix]
+                                 server_name_prefix(
+                                   config[:server_name_prefix]
+                                 )
+                               else
+                                 default_name
+                               end
       end
 
       def create(state)
@@ -358,7 +358,7 @@ module Kitchen
         # pub, priv = parse_ips(pub, priv)
         # pub[config[:public_ip_order].to_i] ||
         #  priv[config[:private_ip_order].to_i] ||
-        #  fail(ActionFailed, 'Could not find an IP') # rubocop:disable Metrics/LineLength, SignalException
+        #  fail(ActionFailed, 'Could not find an IP')
       end
 
       def parse_ips(pub, priv)

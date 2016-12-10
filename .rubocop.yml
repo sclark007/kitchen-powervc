@@ -9,4 +9,6 @@ ClassVars:
 PerceivedComplexity:
   Max: 10
 AbcSize:
-  Max: 80
+  Max: 120
+Metrics/LineLength:
+  Max: 100
