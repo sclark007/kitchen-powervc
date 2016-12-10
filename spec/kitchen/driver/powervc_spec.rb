@@ -230,7 +230,7 @@ describe Kitchen::Driver::Powervc do
         # Inside the yield block we are calling ready?  So we fake it here
         allow(d).to receive(:ready?).and_return(true)
         allow(server).to receive(:wait_for)
-          .with(an_instance_of(Fixnum)).and_yield
+          .with(an_instance_of(Integer)).and_yield
 
         allow(d).to receive(:get_ip).and_return('1.2.3.4')
         allow(d).to receive(:bourne_shell?).and_return(false)
