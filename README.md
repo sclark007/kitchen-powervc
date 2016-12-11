@@ -1,23 +1,19 @@
 # <a name="title"></a> Kitchen::PowerVC: A Test Kitchen Driver for PowerVC
 
-![Build Status](https://img.shields.io/travis/sclark007/kitchen-powervc.svg)
-
+[![Build Status](https://img.shields.io/travis/sclark007/kitchen-powervc.svg)](https://travis-ci.org/sclark007/kitchen-powervc)
+[![Code Climate](https://codeclimate.com/github/sclark007/kitchen-powervc/badges/gpa.svg)](https://codeclimate.com/github/sclark007/kitchen-powervc)
+[![Coverage Status](https://img.shields.io/coveralls/sclark007/kitchen-powervc.svg)](https://coveralls.io/github/sclark007/kitchen-powervc)
 
 A test kitchen Driver for PowerVC.
 
 This driver uses the fog to provision and destroy nova instances. Use a PowerVC cloud for your infrastructure testing!
-
-Shamelessly copied from [Fletcher Nichol](https://github.com/fnichol)'s awesome work on an [EC2 driver](https://github.com/test-kitchen/kitchen-ec2), and [Adam Leff](https://github.com/adamleff)'s amazing work on an [VRO driver](https://github.com/chef-partners/kitchen-vro).
-
-Forked from Kitchen::Openstack created by Jonathan Hartman (<j@p4nt5.com>) and maintained by JJ Asghar (<jj@chef.io>)
-Port for PowerVC support by Benoit Creau (<benoit.creau@chmod666.org>)
 
 ## Requirements
 
 There are **no** external system requirements for this driver. However you will need access to an PowerVC cloud.
 
 ## API ports
-port 5000 is keystone API
+port 5000 is keystone API  
 port 8447 is nova API
 
 ## Installation and Setup
@@ -50,10 +46,10 @@ $ chef gem install kitchen-powervc
 
 ```yaml
 driver:
-  name: openstack
-  openstack_username: [YOUR OPENSTACK USERNAME]
-  openstack_api_key: [YOUR OPENSTACK API KEY] # AKA your OpenStack Password
-  openstack_auth_url: [YOUR OPENSTACK AUTH URL]
+  name: powervc
+  openstack_username: [YOUR PowerVC USERNAME]
+  openstack_api_key: [YOUR PowerVC API KEY] # AKA your PowerVC Password
+  openstack_auth_url: [YOUR PowerVC AUTH URL] # https://<powervcurl>:5000/v3/auth/tokens
   require_chef_omnibus: [e.g. 'true' or a version number if you need Chef]
   image_ref: [SERVER IMAGE ID]
   flavor_ref: [SERVER FLAVOR ID]
@@ -73,17 +69,17 @@ All of Fog's `openstack` options (`openstack_domain_name`, `openstack_project_na
 
 **Required** Tell test-kitchen what driver to use. ;)
 
-### openstack\_username
+### powervc\_username
 
-**Required** Your OpenStack username.
+**Required** Your powervc username.
 
-### openstack\_api\_key
+### powervc\_api\_key
 
-**Required** Your OpenStack API Key, aka your OpenStack password.
+**Required** Your powervc API Key, aka your powervc password.
 
-### openstack\_auth\_url
+### powervc\_auth\_url
 
-**Required** Your OpenStack auth url.
+**Required** Your powervc auth url.
 
 ### require\_chef_omnibus
 
@@ -121,7 +117,7 @@ If a `key_name` is provided it will be used instead of any
 
 If a `key_name` is provided without any `private_key_path`, unexpected
 behavior may result if your local RSA/DSA private key doesn't match that
-OpenStack key. If you do key injection via `cloud-init` like this issue:
+powervc key. If you do key injection via `cloud-init` like this issue:
 [#77](https://github.com/test-kitchen/kitchen-openstack/issues/77). The
 `key_name` should be a blank string if you need to skip it. Example:
 
@@ -136,30 +132,30 @@ driver:
 
 Set the SSH port for the remote access.
 
-### openstack\_tenant
+### powervc\_tenant
 
-Your OpenStack tenant id.
+Your powervc tenant id.
 
-### openstack\_region
+### powervc\_region
 
-Your OpenStack region id.
+Your powervc region id.
 
-### openstack\_service\_name
+### powervc\_service\_name
 
-Your OpenStack compute service name.
+Your powervc compute service name.
 
-### openstack\_network\_name
+### powervc\_network\_name
 
-Your OpenStack network name used to connect to, if you have only private network
+Your powervc network name used to connect to, if you have only private network
 connections you want declare this.
 
 ### glance\_cache\_wait\_timeout
-When OpenStack downloads the image into cache, it takes extra time to provision.  Timeout controls maximum amount of time to wait for machine to move from the Build/Spawn phase to Active.
+When powervc downloads the image into cache, it takes extra time to provision.  Timeout controls maximum amount of time to wait for machine to move from the Build/Spawn phase to Active.
 
 ### server\_wait
 
 `server_wait` is a workaround to deal with how some VMs with `cloud-init`.
-Some clouds need this some, most OpenStack instances don't. This is a stop gap
+Some clouds need this some, most powervc instances don't. This is a stop gap
 wait makes sure that the machine is in a good state to work with. Ideally the
 transport layer in Test-Kitchen will have a more intelligent way to deal with this.
 There will be a dot that appears every 10 seconds as the timer counts down.
@@ -193,7 +189,7 @@ echo "do whatever you want to pre-configure your machine"
 
 ```yaml
 network_ref:
-   - [OPENSTACK NETWORK NAMES OR...]
+   - [powervc NETWORK NAMES OR...]
    - [...ID TO CREATE INSTANCE WITH]
 ```
 
@@ -286,12 +282,12 @@ network_ref:
   - MYNET2
 ```
 
-The `openstack_network_name` is used to select IP address for SSH connection.
+The `powervc_network_name` is used to select IP address for SSH connection.
 It's recommended to specify this option in case of multiple networks used for
 instance to provide more control over network connectivity.
 
 Please note that `network_ref` relies on Network Services (`Fog::Network`) and
-it can be unavailable in your OpenStack installation.
+it can be unavailable in your powervc installation.
 
 ### fixed_ip
 
@@ -307,7 +303,7 @@ fixed_ip: [ipv4_ipaddress]
 ```
 
 Only disable SSL cert validation if you absolutely know what you are doing,
-but are stuck with an OpenStack deployment without valid SSL certs.
+but are stuck with an powervc deployment without valid SSL certs.
 
 ## Example
 
@@ -318,9 +314,9 @@ to override default configuration.
 ---
 driver:
   name: powervc
-  openstack_username: [YOUR OPENSTACK USERNAME]
-  openstack_api_key: [YOUR OPENSTACK API KEY] # AKA your OPENSTACK PASSWORD
-  openstack_auth_url: [YOUR OPENSTACK AUTH URL]
+  openstack_username: [YOUR powervc USERNAME]
+  openstack_api_key: [YOUR powervc API KEY] # AKA your powervc PASSWORD
+  openstack_auth_url: [YOUR powervc AUTH URL]
   require_chef_omnibus: [e.g. 'true' or a version number if you need Chef]
   image_ref: [SERVER IMAGE ID]
   flavor_ref: [SERVER FLAVOR ID]
@@ -386,6 +382,12 @@ suites:
 busser:
   sudo: false
 ```
+
+Shamelessly copied from [Fletcher Nichol](https://github.com/fnichol)'s awesome work on an [EC2 driver](https://github.com/test-kitchen/kitchen-ec2), and [Adam Leff](https://github.com/adamleff)'s amazing work on an [VRO driver](https://github.com/chef-partners/kitchen-vro).
+
+Forked from Kitchen::Openstack created by Jonathan Hartman (<j@p4nt5.com>) and maintained by JJ Asghar (<jj@chef.io>)
+Port for PowerVC support by Benoit Creau (<benoit.creau@chmod666.org>)
+
 
 ## <a name="development"></a> Development
 
