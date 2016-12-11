@@ -1090,11 +1090,11 @@ describe Kitchen::Driver::Powervc do
 
   describe '#parse_ips' do
     let(:pub_v4) { %w(1.1.1.1 2.2.2.2) }
-    # let(:pub_v6) { %w(1::1 2::2) }
+    let(:pub_v6) { %w(1::1 2::2) }
     let(:priv_v4) { %w(3.3.3.3 4.4.4.4) }
-    # let(:priv_v6) { %w(3::3 4::4) }
-    # let(:pub) { pub_v4 + pub_v6 }
-    # let(:priv) { priv_v4 + priv_v6 }
+    let(:priv_v6) { %w(3::3 4::4) }
+    let(:pub) { pub_v4 + pub_v6 }
+    let(:priv) { priv_v4 + priv_v6 }
 
     context 'both public and private IPs' do
       context 'IPv4 (default)' do
@@ -1103,13 +1103,13 @@ describe Kitchen::Driver::Powervc do
         end
       end
 
-      # context 'IPv6' do
-      #   let(:config) { { use_ipv6: true } }
-      #
-      #   it 'returns only the v6 IPs' do
-      #     expect(driver.send(:parse_ips, pub, priv)).to eq([pub_v6, priv_v6])
-      #   end
-      # end
+      context 'IPv6' do
+        let(:config) { { use_ipv6: true } }
+
+        it 'returns only the v6 IPs' do
+          expect(driver.send(:parse_ips, pub, priv)).to eq([pub_v6, priv_v6])
+        end
+      end
     end
 
     context 'only public IPs' do
@@ -1121,13 +1121,13 @@ describe Kitchen::Driver::Powervc do
         end
       end
 
-      # context 'IPv6' do
-      #   let(:config) { { use_ipv6: true } }
-      #
-      #   it 'returns only the v6 IPs' do
-      #     expect(driver.send(:parse_ips, pub, priv)).to eq([pub_v6, []])
-      #   end
-      # end
+      context 'IPv6' do
+        let(:config) { { use_ipv6: true } }
+
+        it 'returns only the v6 IPs' do
+          expect(driver.send(:parse_ips, pub, priv)).to eq([pub_v6, []])
+        end
+      end
     end
 
     context 'only private IPs' do
@@ -1139,13 +1139,13 @@ describe Kitchen::Driver::Powervc do
         end
       end
 
-      # context 'IPv6' do
-      #   let(:config) { { use_ipv6: true } }
-      #
-      #   it 'returns only the v6 IPs' do
-      #     expect(driver.send(:parse_ips, pub, priv)).to eq([[], priv_v6])
-      #   end
-      # end
+      context 'IPv6' do
+        let(:config) { { use_ipv6: true } }
+
+        it 'returns only the v6 IPs' do
+          expect(driver.send(:parse_ips, pub, priv)).to eq([[], priv_v6])
+        end
+      end
     end
 
     context 'no IPs whatsoever' do
@@ -1158,13 +1158,13 @@ describe Kitchen::Driver::Powervc do
         end
       end
 
-      # context 'IPv6' do
-      #   let(:config) { { use_ipv6: true } }
-      #
-      #   it 'returns empty lists' do
-      #     expect(driver.send(:parse_ips, nil, nil)).to eq([[], []])
-      #   end
-      # end
+      context 'IPv6' do
+        let(:config) { { use_ipv6: true } }
+
+        it 'returns empty lists' do
+          expect(driver.send(:parse_ips, nil, nil)).to eq([[], []])
+        end
+      end
     end
   end
 
