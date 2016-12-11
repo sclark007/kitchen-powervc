@@ -21,7 +21,7 @@ require 'kitchen'
 
 module Kitchen
   module Driver
-    class Openstack < Kitchen::Driver::Base
+    class Powervc < Kitchen::Driver::Base
       # A class to allow the Kitchen Openstack driver
       # to use Openstack volumes
       #
@@ -61,10 +61,10 @@ module Kitchen
             creation_timeout = bdm[:creation_timeout]
           end
 
-          @logger.debug "Waiting for volume to be ready for #{creation_timeout} seconds" # rubocop:disable Metrics/LineLength
+          @logger.debug "Waiting for volume to be ready for #{creation_timeout} seconds"
           vol_model.wait_for(creation_timeout) do
             sleep(1)
-            fail('Failed to make volume') if status.casecmp('error'.downcase).zero? # rubocop:disable Metrics/LineLength, SignalException
+            fail('Failed to make volume') if status.casecmp('error'.downcase).zero? # rubocop:disable SignalException
             ready?
           end
 

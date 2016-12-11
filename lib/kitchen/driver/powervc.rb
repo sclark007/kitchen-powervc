@@ -96,10 +96,10 @@ module Kitchen
         disable_ssl_validation if config[:disable_ssl_validation]
         server = create_server
         state[:server_id] = server.id
-        info "PowerVC instance with ID of <#{state[:server_id]}> is ready." # rubocop:disable Metrics/LineLength
+        info "PowerVC instance with ID of <#{state[:server_id]}> is ready."
 
         # this is due to the glance_caching issues. Annoying yes, but necessary.
-        debug "Waiting for VM to be in ACTIVE state for a max time of:#{config[:glance_cache_wait_timeout]} seconds" # rubocop:disable Metrics/LineLength
+        debug "Waiting for VM to be in ACTIVE state for a max time of:#{config[:glance_cache_wait_timeout]} seconds"
         server.wait_for(config[:glance_cache_wait_timeout]) do
           sleep(1)
           ready?
@@ -136,7 +136,7 @@ module Kitchen
           provider: 'OpenStack'
         }
         required_server_settings.each { |s| server_def[s] = config[s] }
-        optional_server_settings.each { |s| server_def[s] = config[s] if config[s] } # rubocop:disable Metrics/LineLength
+        optional_server_settings.each { |s| server_def[s] = config[s] if config[s] }
         server_def
       end
 
@@ -229,21 +229,21 @@ module Kitchen
 
       def find_image(image_ref)
         image = find_matching(compute.images, image_ref)
-        fail(ActionFailed, 'Image not found') unless image # rubocop:disable Metrics/LineLength, SignalException
+        fail(ActionFailed, 'Image not found') unless image # rubocop:disable SignalException
         debug "Selected image: #{image.id} #{image.name}"
         image
       end
 
       def find_flavor(flavor_ref)
         flavor = find_matching(compute.flavors, flavor_ref)
-        fail(ActionFailed, 'Flavor not found') unless flavor # rubocop:disable Metrics/LineLength, SignalException
+        fail(ActionFailed, 'Flavor not found') unless flavor # rubocop:disable SignalException
         debug "Selected flavor: #{flavor.id} #{flavor.name}"
         flavor
       end
 
       def find_network(network_ref)
         net = find_matching(network.networks.all, network_ref)
-        fail(ActionFailed, 'Network not found') unless net # rubocop:disable Metrics/LineLength, SignalException
+        fail(ActionFailed, 'Network not found') unless net # rubocop:disable SignalException
         debug "Selected net: #{net.id} #{net.name}"
         net
       end
@@ -298,7 +298,7 @@ module Kitchen
             i.ip if i.fixed_ip.nil? && i.instance_id.nil? && i.pool == pool
           end.compact
           if free_addrs.empty?
-            fail ActionFailed, "No available IPs in pool <#{pool}>" # rubocop:disable Metrics/LineLength, SignalException
+            fail ActionFailed, "No available IPs in pool <#{pool}>" # rubocop:disable SignalException
           end
           config[:floating_ip] = free_addrs[0]
           attach_ip(server, free_addrs[0])
@@ -401,13 +401,13 @@ module Kitchen
 
       def wait_for_server(state)
         if config[:server_wait]
-          info "Sleeping for #{config[:server_wait]} seconds to let your server to start up..." # rubocop:disable Metrics/LineLength
+          info "Sleeping for #{config[:server_wait]} seconds to let your server to start up..."
           countdown(config[:server_wait])
         end
         info 'Waiting for server to be ready...'
         instance.transport.connection(state).wait_until_ready
       rescue
-        error "Server #{state[:hostname]} (#{state[:server_id]}) not reachable. Destroying server..." # rubocop:disable Metrics/LineLength
+        error "Server #{state[:hostname]} (#{state[:server_id]}) not reachable. Destroying server..."
         destroy(state)
         raise
       end

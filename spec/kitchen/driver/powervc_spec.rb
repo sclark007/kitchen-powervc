@@ -152,8 +152,8 @@ describe Kitchen::Driver::Powervc do
           openstack_region: 'atlantis',
           openstack_service_name: 'the_service',
           private_key_path: '/path/to/id_rsa',
-        #  floating_ip_pool: 'swimmers',
-        #  floating_ip: '11111',
+          #  floating_ip_pool: 'swimmers',
+          #  floating_ip: '11111',
           network_ref: '0xCAFFE',
           block_device_mapping: {
             make_volume: true,
@@ -193,7 +193,7 @@ describe Kitchen::Driver::Powervc do
       allow(d).to receive(:add_ohai_hint).and_return(true)
       allow(d).to receive(:do_ssh_setup).and_return(true)
       allow(d).to receive(:sleep)
-      allow(d).to receive(:wait_for_ssh_key_access).and_return('SSH key authetication successful') # rubocop:disable Metrics/LineLength
+      allow(d).to receive(:wait_for_ssh_key_access).and_return('SSH key authetication successful')
       allow(d).to receive(:disable_ssl_validation).and_return(false)
       d
     end
@@ -230,7 +230,7 @@ describe Kitchen::Driver::Powervc do
         # Inside the yield block we are calling ready?  So we fake it here
         allow(d).to receive(:ready?).and_return(true)
         allow(server).to receive(:wait_for)
-          .with(an_instance_of(Fixnum)).and_yield
+          .with(an_instance_of(Integer)).and_yield
 
         allow(d).to receive(:get_ip).and_return('1.2.3.4')
         allow(d).to receive(:bourne_shell?).and_return(false)
@@ -244,7 +244,7 @@ describe Kitchen::Driver::Powervc do
 
       it 'throws an Action error when trying to create_server' do
         allow(driver).to receive(:create_server).and_raise(Fog::Errors::Error)
-        expect { driver.send(:create, state) }.to raise_error(Kitchen::ActionFailed) # rubocop:disable Metrics/LineLength
+        expect { driver.send(:create, state) }.to raise_error(Kitchen::ActionFailed)
       end
     end
   end
@@ -401,7 +401,7 @@ describe Kitchen::Driver::Powervc do
         server_name: 'hello',
         image_ref: '111',
         flavor_ref: '1',
-        #availability_zone: nil,
+        # availability_zone: nil,
         public_key_path: 'tarpals',
         block_device_mapping: {
           volume_size: '5',
@@ -465,7 +465,7 @@ describe Kitchen::Driver::Powervc do
           server_name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals'
         }
       end
@@ -485,7 +485,7 @@ describe Kitchen::Driver::Powervc do
           server_name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'montgomery',
           key_name: 'tarpals'
         }
@@ -507,10 +507,10 @@ describe Kitchen::Driver::Powervc do
           server_name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'montgomery',
           key_name: 'tarpals',
-          #security_groups: ['ping-and-ssh']
+          # security_groups: ['ping-and-ssh']
         }
       end
 
@@ -530,7 +530,7 @@ describe Kitchen::Driver::Powervc do
           server_name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: 'elsewhere',
+          # availability_zone: 'elsewhere',
           public_key_path: 'montgomery',
           key_name: 'tarpals'
         }
@@ -560,7 +560,7 @@ describe Kitchen::Driver::Powervc do
         expect(servers).to receive(:create).with(name: 'hello',
                                                  image_ref: '111',
                                                  flavor_ref: '1',
-                                                 #availability_zone: nil,
+                                                 # availability_zone: nil,
                                                  public_key_path: 'tarpals')
         driver.send(:create_server)
       end
@@ -580,7 +580,7 @@ describe Kitchen::Driver::Powervc do
         expect(servers).to receive(:create).with(name: 'hello',
                                                  image_ref: '222',
                                                  flavor_ref: '2',
-                                                 #availability_zone: nil,
+                                                 # availability_zone: nil,
                                                  public_key_path: 'tarpals')
         driver.send(:create_server)
       end
@@ -601,7 +601,7 @@ describe Kitchen::Driver::Powervc do
         expect(servers).to receive(:create).with(name: 'hello',
                                                  image_ref: '222',
                                                  flavor_ref: '1',
-                                                 #availability_zone: nil,
+                                                 # availability_zone: nil,
                                                  public_key_path: 'tarpals')
         driver.send(:create_server)
       end
@@ -626,7 +626,7 @@ describe Kitchen::Driver::Powervc do
           name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals',
           nics: networks
         )
@@ -653,7 +653,7 @@ describe Kitchen::Driver::Powervc do
           name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals',
           nics: networks
         )
@@ -681,7 +681,7 @@ describe Kitchen::Driver::Powervc do
           name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals',
           nics: networks
         )
@@ -711,7 +711,7 @@ describe Kitchen::Driver::Powervc do
           name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals',
           user_data: data
         )
@@ -726,7 +726,7 @@ describe Kitchen::Driver::Powervc do
           image_ref: '111',
           flavor_ref: '1',
           public_key_path: 'tarpals',
-          #config_drive: true
+          # config_drive: true
         }
       end
 
@@ -735,9 +735,9 @@ describe Kitchen::Driver::Powervc do
           name: 'hello',
           image_ref: '111',
           flavor_ref: '1',
-          #availability_zone: nil,
+          # availability_zone: nil,
           public_key_path: 'tarpals',
-          #config_drive: true
+          # config_drive: true
         )
         driver.send(:create_server)
       end
@@ -1099,7 +1099,7 @@ describe Kitchen::Driver::Powervc do
     context 'both public and private IPs' do
       context 'IPv4 (default)' do
         it 'returns only the v4 IPs' do
-          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([["1.1.1.1", "2.2.2.2"], ["3.3.3.3", "4.4.4.4"]])
+          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([['1.1.1.1', '2.2.2.2'], ['3.3.3.3', '4.4.4.4']])
         end
       end
 
@@ -1117,7 +1117,7 @@ describe Kitchen::Driver::Powervc do
 
       context 'IPv4 (default)' do
         it 'returns only the v4 IPs' do
-          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([["1.1.1.1", "2.2.2.2"], ["3.3.3.3", "4.4.4.4"]])
+          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([['1.1.1.1', '2.2.2.2'], ['3.3.3.3', '4.4.4.4']])
         end
       end
 
@@ -1135,7 +1135,7 @@ describe Kitchen::Driver::Powervc do
 
       context 'IPv4 (default)' do
         it 'returns only the v4 IPs' do
-          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([["1.1.1.1", "2.2.2.2"], ["3.3.3.3", "4.4.4.4"]])
+          expect(driver.send(:parse_ips, pub_v4, priv_v4)).to eq([['1.1.1.1', '2.2.2.2'], ['3.3.3.3', '4.4.4.4']])
         end
       end
 
@@ -1226,39 +1226,39 @@ describe Kitchen::Driver::Powervc do
     end
   end
 
-  # describe '#get_bdm' do
-  #   let(:logger) { Logger.new(logged_output) }
-  #   let(:config) do
-  #     {
-  #       openstack_username: 'a',
-  #       openstack_api_key: 'b',
-  #       openstack_auth_url: 'http://',
-  #       openstack_tenant: 'me',
-  #       #openstack_region: 'ORD',
-  #       openstack_service_name: 'stack',
-  #       image_ref: '22',
-  #       flavor_ref: '33',
-  #       public_key_path: '/tmp',
-  #       username: 'admin',
-  #       port: '2222',
-  #       server_name: 'puppy',
-  #       server_name_prefix: 'parsnip',
-  #       private_key_path: '/path/to/id_rsa',
-  #       #floating_ip_pool: 'swimmers',
-  #       #floating_ip: '11111',
-  #       network_ref: '0xCAFFE',
-  #       block_device_mapping: {
-  #         volume_id: '55',
-  #         volume_size: '5',
-  #         device_name: 'vda',
-  #         delete_on_termination: true
-  #       }
-  #     }
-  #   end
-  #   it 'returns just the BDM config' do
-  #     expect(driver.send(:get_bdm, config)).to eq(config[:block_device_mapping])
-  #   end
-  # end
+  describe '#get_bdm' do
+    let(:logger) { Logger.new(logged_output) }
+    let(:config) do
+      {
+        openstack_username: 'a',
+        openstack_api_key: 'b',
+        openstack_auth_url: 'http://',
+        openstack_tenant: 'me',
+        # openstack_region: 'ORD',
+        openstack_service_name: 'stack',
+        image_ref: '22',
+        flavor_ref: '33',
+        public_key_path: '/tmp',
+        username: 'admin',
+        port: '2222',
+        server_name: 'puppy',
+        server_name_prefix: 'parsnip',
+        private_key_path: '/path/to/id_rsa',
+        # floating_ip_pool: 'swimmers',
+        # floating_ip: '11111',
+        network_ref: '0xCAFFE',
+        block_device_mapping: {
+          volume_id: '55',
+          volume_size: '5',
+          device_name: 'vda',
+          delete_on_termination: true
+        }
+      }
+    end
+    it 'returns just the BDM config' do
+      expect(driver.send(:get_bdm, config)).to eq(config[:block_device_mapping])
+    end
+  end
 
   describe '#config_server_name' do
     let(:config) do

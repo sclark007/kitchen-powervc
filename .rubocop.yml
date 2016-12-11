@@ -11,7 +11,7 @@ PerceivedComplexity:
 AbcSize:
   Max: 120
 Metrics/LineLength:
-  Max: 100
+  Enabled: false
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: false

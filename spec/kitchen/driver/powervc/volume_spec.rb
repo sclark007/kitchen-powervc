@@ -9,7 +9,7 @@ require 'rspec'
 require 'kitchen'
 require 'ohai'
 
-describe Kitchen::Driver::Openstack::Volume do
+describe Kitchen::Driver::Powervc::Volume do
   let(:os) do
     {
       openstack_username: 'twilight',
